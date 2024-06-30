@@ -1,0 +1,109 @@
+/* UserSignup.css */
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: rgb(110, 175, 176);
+    background: linear-gradient(0deg, rgba(110, 175, 176, 1) 9%, rgba(102, 126, 234, 1) 97%);
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+.form-container {
+    max-width: 400px;
+    width: 100%;
+    background-color: #ffffff;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-container h2 {
+    text-align: center;
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #1a202c;
+    margin-bottom: 1.5rem;
+}
+
+.form-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-container form div {
+    margin-bottom: 1rem;
+}
+
+.form-container form label {
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #4a5568;
+    display: block;
+}
+
+.form-container form input {
+    padding: 0.75rem 1rem;
+    border: 1px solid #cbd5e0;
+    border-radius: 0.375rem;
+    font-size: 1rem;
+    color: #2d3748;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.form-container form input:focus {
+    border-color: #667eea;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.5);
+}
+
+.form-container form button {
+    padding: 0.75rem 1rem;
+    background: rgb(110, 175, 176);
+    background: linear-gradient(0deg, rgba(110, 175, 176, 1) 9%, rgba(102, 126, 234, 1) 97%);
+    color: #ffffff;
+    border: none;
+    border-radius: 0.375rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 0 auto;
+    display: block;
+    width: 100%;
+}
+
+.form-container form button:hover {
+    background-color: #5a67d8;
+}
+
+.form-container .text-center {
+    text-align: center;
+}
+
+.form-container .text-center p {
+    margin-top: 1rem;
+    color: #4a5568;
+}
+
+.form-container .text-center p a {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.form-container .text-center p a:hover {
+    color: #5a67d8;
+}

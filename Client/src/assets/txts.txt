@@ -1,0 +1,18 @@
+@media (max-height: 600px) {
+    .container {
+        padding: 0.5rem;
+    }
+
+    .form-container {
+        padding: 1rem;
+        box-shadow: none; /* Remove shadow on very small screens */
+    }
+
+    .form-container h2 {
+        font-size: 1.5rem;
+    }
+
+    .form-container form input, .form-container form button {
+        padding: 0.5rem;
+    }
+}
