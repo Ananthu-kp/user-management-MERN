@@ -9,7 +9,7 @@ const userSignup = async (req, res) => {
         const isUserExists = await User.findOne({ email });
 
         if (isUserExists) {
-            return res.status(400).json({ message: "User Already Exists" });
+            return res.status(400).send("UserExist");
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);
@@ -24,7 +24,7 @@ const userSignup = async (req, res) => {
         res.status(201).json(savedUser);
     } catch (error) {
         console.error('Error creating user:', error);
-        res.status(500).json({ message: "An error occurred. Please try again later." });
+        res.status(500).send("Internal Server Error");
     }
 };
 
