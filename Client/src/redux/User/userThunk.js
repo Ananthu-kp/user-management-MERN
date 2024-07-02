@@ -85,6 +85,49 @@ const registration = async ({ username, email, phone, password, confirmPassword,
     }
 };
 
+
+
+const userVerify = createAsyncThunk(
+    'userSlice/userVerify',
+    async ({ email, password, toast }, { rejectWithValue }) => {
+        console.log(email, password);
+        try {
+            password = password.trim();
+            email = email.trim();
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (email === "" || password === "") {
+                toast.error("All fields are required", { autoClose: 3000 });
+                return rejectWithValue("All fields are required");
+            } else if (!emailPattern.test(email)) {
+                toast.error("Please enter a valid email address", { autoClose: 3000 });
+                return rejectWithValue("Invalid email address");
+            } else if (password.length < 6) {
+                toast.error("Password must be at least 6 characters", { autoClose: 3000 });
+                return rejectWithValue("Password too short");
+            } else {
+
+                const response = await axios.post('http://localhost:3000/userLogin', { email, password });
+                
+                if (response.data === "User not found") {
+                    toast.error("User not found", { autoClose: 3000 });
+                    return rejectWithValue("User not found");
+                } else if (response.data === "wrongPassword") {
+                    toast.error("Password is wrong", { autoClose: 3000 });
+                    return rejectWithValue("Incorrect password");
+                } else {
+                    return response.data;
+                }
+            }
+        } catch (error) {
+            toast.error("Something went wrong", { autoClose: 3000 });
+            return rejectWithValue(error.message);
+        }
+    }
+)
+
+
 export {
-    registration
+    registration,
+    userVerify
 };

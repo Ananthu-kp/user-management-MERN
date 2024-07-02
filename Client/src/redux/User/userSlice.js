@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { userVerify } from './userThunk';
 
 const userData = localStorage.getItem('userData') ? JSON.parse(localStorage.getItem('userData')) : null;
 const token = localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')) : null;
@@ -18,6 +19,20 @@ const userSlice = createSlice({
             localStorage.removeItem('token');
         },
     },
+
+    extraReducers: (builder) => {
+        builder.addCase(userVerify.fulfilled, (state, action) => {
+            const { userData, token } = action.payload;
+            state.userData = userData;
+            state.token = token;
+            localStorage.setItem("userData", JSON.stringify(userData));
+            localStorage.setItem("token", JSON.stringify(token));
+        })
+            .addCase(userVerify.rejected, (state) => {
+                state.userData = null;
+                state.token = null;
+            })
+    }
 })
 
 

@@ -1,5 +1,6 @@
 const User = require('../model/userModel');
 const bcrypt = require('bcrypt');
+const { createToken } = require('../config/jwt')
 
 
 const userSignup = async (req, res) => {
@@ -28,6 +29,34 @@ const userSignup = async (req, res) => {
     }
 };
 
+
+
+const userLogin = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+        console.log(email, password);
+
+        const userData = await User.findOne({ email });
+        if (!userData) {
+            return res.status(404).send("User not found");
+        }
+        // console.log(userData);
+
+        const isPasswordValid = await bcrypt.compare(password, userData.password);
+        if (!isPasswordValid) {
+            return res.status(400).send("wrongPassword");
+        }
+
+        const token = createToken(userData._id);
+        console.log(token);
+        res.json({ userData, token });
+    } catch (err) {
+        console.error('Error during login:', err.message);  
+        res.status(500).send("Internal Server Error");
+    }
+};
+
 module.exports = {
-    userSignup
+    userSignup,
+    userLogin
 };
