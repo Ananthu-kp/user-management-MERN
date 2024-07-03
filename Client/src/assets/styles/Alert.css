@@ -1,41 +1,44 @@
 .swal2-confirm.confirm-btn {
-    background-color: #7b5feb;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 50px;
-    cursor: pointer;
-    margin-right: 2px;
-    margin-top: -30px;
-  }
-  
-  .swal2-cancel.cancel-btn {
-    background-color: #7b5feb;
-    color: white;
-    border: 1px solid black;
-    padding: 10px 15px;
-    border-radius: 50px;
-    cursor: pointer;
-    margin-left: 2px;
-    margin-top: -30px;
-  }
-  
-  .swal2-confirm.confirm-btn:hover,
-  .swal2-cancel.cancel-btn:hover {
-    background-color: white;
-    color: #7b5feb;
-  }
-  
-  .swal2-popup.custom-width {
-    background-color: #261f4d;
-    width: auto;
-    padding: 0px 20px;
-    height: 100px;
-    padding: 0%;
-  }
-  
-  .swal2-popup .custom-text {
-    color: white;
-    font-size: 14px;
-    font-weight: bold;
-  }
+  background: rgb(110, 175, 176);
+  background: linear-gradient(0deg, rgba(110, 175, 176, 1) 9%, rgba(102, 126, 234, 1) 97%);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 50px;
+  cursor: pointer;
+  margin-right: 2px;
+  margin-top: -30px;
+}
+
+.swal2-cancel.cancel-btn {
+  background: rgb(110, 175, 176);
+  background: linear-gradient(0deg, rgba(110, 175, 176, 1) 9%, rgba(102, 126, 234, 1) 97%);
+  color: white;
+  border: 1px solid black;
+  padding: 10px 15px;
+  border-radius: 50px;
+  cursor: pointer;
+  margin-left: 2px;
+  margin-top: -30px;
+}
+
+.swal2-confirm.confirm-btn:hover,
+.swal2-cancel.cancel-btn:hover {
+  background-color: white;
+  color: #7b5feb;
+}
+
+.swal2-popup.custom-width {
+  background: rgb(110, 175, 176);
+  background: linear-gradient(0deg, rgba(110, 175, 176, 1) 9%, rgba(102, 126, 234, 1) 97%);
+  width: auto;
+  padding: 0px 20px;
+  height: 100px;
+  padding: 0%;
+}
+
+.swal2-popup .custom-text {
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+}

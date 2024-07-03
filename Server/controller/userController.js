@@ -56,7 +56,24 @@ const userLogin = async (req, res) => {
     }
 };
 
+const editProfile = async (req, res) => {
+    try {
+        const { userId, username } = req.body;
+        const file = req.file;
+        const updatedData = {
+            username: username,
+            ...(file && { profileURL: file.originalname })
+        };
+        const updateUser = await User.updateOne({ _id: userId }, updatedData);
+        res.json(updateUser);
+    } catch (error) {
+        console.error("Error updating profile: ", error);
+        res.status(500).send("Internal Server Error");
+    }
+};
+
 module.exports = {
     userSignup,
-    userLogin
+    userLogin,
+    editProfile
 };

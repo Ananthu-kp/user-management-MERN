@@ -1,0 +1,60 @@
+.main-div {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  margin-top: 4rem;
+  align-items: center;
+  flex-direction: column;
+}
+
+.user-table {
+  width: 80%;
+}
+
+.user-table th,
+.user-table td {
+  text-align: center;
+  padding: 1rem;
+  border: 1px solid #7b5feb;
+  color: white;
+}
+
+.user-table th {
+  background-color: rgb(102, 126, 234);
+  font-weight: bold;
+  font-size: 1rem;
+  border-radius: 1rem;
+}
+
+.user-table td {
+  border-radius: 1rem;
+  background: rgb(110, 175, 176);
+  background: linear-gradient(0deg, rgba(110, 175, 176, 1) 9%, rgba(102, 126, 234, 1) 97%);
+}
+
+.user-table button {
+  background-color: transparent;
+  border: none;
+  color: #7b5feb;
+  cursor: pointer;
+}
+
+.user-table button:hover {
+  color: white;
+}
+
+h1 {
+  color: white;
+  margin-bottom: 2rem;
+  margin-top: 0rem;
+  font-size: 3rem;
+}
+
+.search {
+  display: flex;
+  justify-content: space-between;
+  height: 2.5rem;
+  width: 20rem;
+  margin-bottom: 3rem;
+  border-radius: 1rem;
+}
