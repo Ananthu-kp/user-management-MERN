@@ -1,6 +1,6 @@
 import '../../assets/styles/UserSignup.css'
 
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { registration } from '../../redux/User/userThunk';
 import { ToastContainer, toast } from 'react-toastify';
@@ -15,7 +15,7 @@ function UserSignup() {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const navigate = useNavigate()
-    const token = useSelector((state) => state.user.token) 
+    const userData = useSelector((state) => state.user.userData) 
 
 
     const handleSubmit = async(e) => {
@@ -34,6 +34,13 @@ function UserSignup() {
             }, 2000)
         }
     }
+
+
+    useEffect(() => {
+        if (userData) {
+            navigate('/')
+        }
+    }, [userData])
 
     return (
         <>
