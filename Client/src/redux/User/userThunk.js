@@ -108,7 +108,7 @@ const userVerify = createAsyncThunk(
             } else {
 
                 const response = await axios.post('http://localhost:3000/userLogin', { email, password });
-                
+
                 if (response.data === "User not found") {
                     toast.error("User not found", { autoClose: 3000 });
                     return rejectWithValue("User not found");
@@ -127,7 +127,48 @@ const userVerify = createAsyncThunk(
 )
 
 
+
+const editProfile = createAsyncThunk(
+    'userSlice/editProfile',
+    async ({ formData, username, image, toast }, { rejectWithValue }) => {
+        try {
+            username = username.trim()
+            if (username === '') {
+                toast.error('Username is Required', { autoClose: 3000 });
+                return rejectWithValue('Username is Required');
+            } else {
+                const token = JSON.parse(localStorage.getItem('token'));
+                const response = await axios.post('http://localhost:3000/editProfile', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                        'Authorization': `Bearer ${token}`
+                    }
+                })
+
+                if (response.data.acknowledged === true && response.data.modifiedCount == 1) {
+                    toast.success("Update changes successfully", { autoClose: 3000 });
+                    return { username, ...(image && { profileURL: image.name }) };
+                } else if (response.data === "Access_denied") {
+                    toast.warning("Access_denied", { autoClose: 3000 });
+                    return rejectWithValue("Access_denied");
+                } else if (response.data === "authentication_failed") {
+                    toast.warning("Authentication failed please login again", { autoClose: 3000 });
+                    return rejectWithValue("Access_denied");
+                } else {
+                    toast.warning("No changes detected", { autoClose: 3000 });
+                    return rejectWithValue("No changes found");
+                }
+            }
+        } catch (error) {
+            console.error("Error: ", error);
+            toast.error("Something went wrong, please try again later", { autoClose: 3000 });
+            return rejectWithValue(error.message);
+        }
+    }
+)
+
 export {
     registration,
-    userVerify
+    userVerify,
+    editProfile
 };

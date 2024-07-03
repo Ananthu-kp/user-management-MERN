@@ -1,8 +1,10 @@
 import '../../assets/styles/UserHome.css'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; 
 import { Camera } from '../../assets/svg/svg';
+import { editProfile } from '../../redux/User/userThunk';
 
 function UserHome() {
   const userData = useSelector((state) => state.user.userData);
@@ -10,7 +12,23 @@ function UserHome() {
   const [edit, setEdit] = useState(false);
   const [image, setImage] = useState(null);
   const imageIcon = useRef(null);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    setEdit(false)
+  }, [userData])
+
+
+  const saveData = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append('userId', userData._id);
+    formData.append('username', username);
+    if (image) {
+      formData.append('image', image);
+    }
+    dispatch(editProfile({ formData, username, image, toast }));
+  };
 
   return (
     <div>
@@ -19,7 +37,7 @@ function UserHome() {
         <div className="profile-card">
           {edit ? (
             <>
-              <form className="profileform" onSubmit={(e) => saveData(e, userData._id)}>
+              <form className="profileform" onSubmit={saveData}>
                 <div
                   className="circle"
                   style={
@@ -36,7 +54,7 @@ function UserHome() {
                     accept=".png, .jpeg, .jpg"
                   />
                   <div onClick={() => imageIcon.current.click()}>
-                    <Camera/>
+                    <Camera />
                   </div>
                 </div>
                 <input
@@ -46,7 +64,7 @@ function UserHome() {
                   placeholder={userData.username}
                 />
                 <div className="btn-div">
-                  <button type="button" className="btn" onClick={() => { setEdit(false); setImage(null) }}>
+                  <button type="button" className="btn" onClick={() => { setEdit(false); setImage(null); }}>
                     Cancel
                   </button>
                   <button type="submit" className="btn">
@@ -58,21 +76,19 @@ function UserHome() {
           ) : (
             <>
               <div className="image">
-                <img
-                  src={`../src/assets/images/${userData.profileURL}`}
-                />
+                <img src={`../src/assets/images/${userData.profileURL}`} />
               </div>
               <div className="text-left">
-                <p><span>Name : </span>{userData.username}</p>
-                <p><span>Email : </span>{userData.email}</p>
+                <p><span>Name: </span>{userData.username}</p>
+                <p><span>Email: </span>{userData.email}</p>
               </div>
-              <button className="btn" onClick={() => { setEdit(true), setUsername(userData.username) }}>Edit</button>
+              <button className="btn" onClick={() => { setEdit(true); setUsername(userData.username); }}>Edit</button>
             </>
           )}
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default UserHome

@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { userVerify } from './userThunk';
+import { editProfile, userVerify } from './userThunk';
 
 const userData = localStorage.getItem('userData') ? JSON.parse(localStorage.getItem('userData')) : null;
 const token = localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')) : null;
@@ -32,6 +32,15 @@ const userSlice = createSlice({
                 state.userData = null;
                 state.token = null;
             })
+            .addCase(editProfile.fulfilled, (state, action) => {
+                const { username, profileURL } = action.payload;
+                state.userData.username = username;
+                if (profileURL) {
+                    state.userData.profileURL = profileURL;
+                }
+                state.editConfirm = true;
+                localStorage.setItem("userData", JSON.stringify(state.userData));
+            });
     }
 })
 

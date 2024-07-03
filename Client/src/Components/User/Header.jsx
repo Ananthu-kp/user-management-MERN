@@ -2,13 +2,14 @@ import '../../assets/styles/Header.css'
 import React from 'react'
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
+import { logout } from '../../redux/User/userSlice';
 
 function Header() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const handleLogout = () => {
-        dispatch(logoutUser());
+        dispatch(logout());
         navigate("/userLogin");
       };
     return (

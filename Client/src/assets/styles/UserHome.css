@@ -12,17 +12,17 @@ html, body {
     display: flex;
     justify-content: center;
     align-items: center; 
-    height: 100vh;
+    min-height: calc(100vh - 4rem);
     background: rgb(110, 175, 176);
     background: linear-gradient(0deg, rgba(110, 175, 176, 1) 9%, rgba(102, 126, 234, 1) 97%);
     padding: 1rem;
     box-sizing: border-box;
+    margin-bottom: 1rem;
 }
 
 .profile-card {
     width: 20rem;
     height: auto;
-    margin-top: 7rem;
     background-color:  rgb(110, 175, 176);
     border-radius: 2rem;
     border: 1px solid  rgba(102, 126, 234, 1);
